@@ -1,0 +1,248 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    border-radius: 5px;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#custom-layout,
+#custom-power,
+#tray,
+#custom-launcher,
+#mode,
+#workspaces,
+#idle_inhibitor,
+#mpd {
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: white;
+}
+
+
+#language {
+/*    snip  */
+    min-width: 30px;
+}
+
+#workspaces {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-left: 5px;
+    /* background: rgba(40, 42, 54, 0.95); */
+    background: rgba(0, 0, 0, 0.9);
+}
+
+#workspaces button {
+    color: white;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top:0px;
+    padding-bottom:0px;
+    background: rgba(0, 0, 0, 1);
+    /* Use box-shadow instead of border so the text isn't offset */
+    /* box-shadow: inset 0 -1px transparent; */
+    /* Avoid rounded borders under each workspace name */
+    /* border: none; */
+    border: 0px solid white;
+    border-radius:5px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    background: rgba(150, 150, 150, 1);
+    /* box-shadow: inset 0 -1px #ffffff; */
+}
+
+#workspaces button.visible {
+  /* background-color: #4477ff; */
+  background-color: rgba(50,50,50,1);
+  color: white;
+  /* box-shadow: inset 0 -1px white; */
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#workspaces button.focused {
+    /*background-color: #4477ff;*/
+    background-color: rgba(80,80,80,1);
+    color: white;
+    box-shadow: inset 0 -4px #4477ff;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 0px solid #ffffff;
+}
+
+#window {
+    margin: 0 4px;
+}
+
+#custom-launcher {
+  background-color: black;
+}
+
+#custom-recorder {
+    color: red;
+    font-weight: bold;
+}
+
+
+.modules-left {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.modules-right {
+  background-color: black;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding-top: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 2px;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    background-color: #2ecc71;
+    color: #000000;
+}
+
+#memory {
+    background-color: #9b59b6;
+}
+
+#disk {
+    background-color: #964B00;
+}
+
+#backlight {
+    background-color: #90b1b1;
+}
+
+#network {
+    background-color: #2980b9;
+}
+
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio.muted {
+    background-color: #90b1b1;
+    color: #2a5c45;
+}
+
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#language {
+    background: #00b093;
+    color: #740864;
+    padding: 0 5px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,95 @@
+{
+    "height": 10,
+    "spacing": 2,
+
+    "modules-left": ["custom/launcher", "sway/workspaces"],
+    "modules-center": ["sway/mode"],
+    "modules-right": ["custom/recorder", "custom/layout", "idle_inhibitor", "tray", "pulseaudio", "battery", "clock", "custom/power"],
+    "custom/layout": {
+      "exec": "swaymsg -t get_inputs | jq -r '.[] | select(.type==\"keyboard\") | .xkb_active_layout_name' | head -n1 | awk '{ if ($0 ~ /English/) print \"🇬🇧\"; else if ($0 ~ /Finnish/) print \"🇫🇮\"; else print $0 }'",
+      "interval": 1
+    },
+    "sway/workspaces": {
+	    "disable-scroll": true,
+	    "format": "{name}: {icon}",
+      "format-icons": {
+        "urgent": "",
+        "focused": "",
+        "default": "⃝",
+        "visible": "⦾"
+	    }
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/language": {
+    "format": "{flag}{shortDescription} {variant}"
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 7
+    },
+    "clock": {
+	"format": "  {:%b %d %a  %H:%M}",
+        "tooltip-format": " {:%a - %Y %b %d - w%W  %H:%M:%S %z}"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}",
+        "format-charging": "   {capacity}%",
+        "format-plugged": "   {capacity}%",
+        "format-alt": "{time} {icon} {capacity}%",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "tooltip-format": "{capacity}% - {time}",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{icon}",
+        "format-bluetooth": "{icon} ()",
+        "format-bluetooth-muted": "x {icon} ()",
+        "format-muted": "x",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip-format": "{icon} {volume}%",
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+      "format": "",
+      // "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Shutdown'  'shutdown -h now' -b 'Restart' 'shutdown -r now' -b 'Logout' 'swaymsg exit' -b 'suspend' 'systemctl suspend' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33",
+      "on-click": "wlogout",
+      "return-type": "json",
+      "escape": true
+    },
+    "custom/launcher": {
+        "format": "🐧",                 // an icon (Font Awesome magnifying glass)
+        "tooltip": "App Launcher",
+        "on-click": "wofi --show drun", // command to run on click
+        "interval": 0                  // no need to refresh
+    },
+    "custom/recorder": {
+      "exec": "pgrep wf-recorder >/dev/null && echo REC",
+      "interval": 1
+    },
+}
