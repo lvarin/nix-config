@@ -97,6 +97,21 @@
 	sddm-sugar-dark
   #  wget
   ];
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+    ];
+  };
+
+fonts.packages = with pkgs; [
+  nerd-fonts.fira-code
+  nerd-fonts.jetbrains-mono
+  noto-fonts
+  noto-fonts-color-emoji
+  noto-fonts-cjk-sans
+];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
