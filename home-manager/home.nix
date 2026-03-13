@@ -13,6 +13,7 @@
     gcc
     git
     waybar
+    wlogout
     grim
     slurp
     wl-clipboard
