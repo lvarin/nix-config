@@ -39,6 +39,8 @@
   xdg.configFile."mako/config".source = ./mako/config;
   xdg.configFile."sway/foot.ini".source = ./foot/foot.ini;
 
+  xdg.configFile."nvim".source = ./nvim;
+
   home.file.".zshrc".source = ./zsh/zshrc;
   home.file.".Xmodmap".source = ./zsh/Xmodmap;
 
