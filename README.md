@@ -16,22 +16,47 @@ Everything needed to reproduce the system lives in this repository.
 
 ```
 nix-config/
-├─ flake.nix
-├─ flake.lock
-├─ nixos/
-│  ├─ configuration.nix
-│  └─ hardware-configuration.nix
-└─ home-manager/
-   ├─ home.nix
-   ├─ sway/
-   │  └─ config
-   ├─ waybar/
-   │  ├─ config
-   │  └─ style.css
-   ├─ foot/
-   │  └─ foot.ini
-   └─ wofi/
-      └─ config
+├── flake.lock
+├── flake.nix
+├── home-manager
+│   ├── foot
+│   │   └── foot.ini
+│   ├── home.nix
+│   ├── mako
+│   │   └── config
+│   ├── nvim
+│   │   ├── init.lua
+│   │   ├── lazy-lock.json
+│   │   ├── lazyvim.json
+│   │   ├── LICENSE
+│   │   ├── lua
+│   │   │   ├── config
+│   │   │   │   ├── autocmds.lua
+│   │   │   │   ├── keymaps.lua
+│   │   │   │   ├── lazy.lua
+│   │   │   │   └── options.lua
+│   │   │   └── plugins
+│   │   │       ├── disable.lua
+│   │   │       └── example.lua
+│   │   ├── README.md
+│   │   └── stylua.toml
+│   ├── sway
+│   │   └── config
+│   ├── waybar
+│   │   ├── config
+│   │   └── style.css
+│   └── zsh
+│       ├── Xmodmap
+│       ├── zsh
+│       │   ├── aliases.zsh
+│       │   ├── config.zsh
+│       │   ├── env.zsh
+│       │   └── path.zsh
+│       └── zshrc
+├── nixos
+│   ├── configuration.nix
+│   └── hardware-configuration.nix
+└── README.md
 ```
 
 * `flake.nix` – main entry point for the system
@@ -43,36 +68,16 @@ nix-config/
 
 After nixOS is installed:
 
-1. Enable flakes
-
-    Edit the system configuration:
-
-    ```sh
-    sudo nano /etc/nixos/configuration.nix
-    ```
-
-    Add:
-
-    ```ini
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    ```
-
-    Apply once:
-
-    ```sh
-    sudo nixos-rebuild switch
-    ```
-
-2. Clone the configuration repository
+1. Clone the configuration repository
 
     Clone this repository anywhere (commonly in the home directory):
 
     ```sh
-    git clone https://github.com/YOUR_USERNAME/nix-config
+    nix run nixpkgs#git clone https://github.com/lvarin/nix-config
     cd nix-config
     ```
 
-3. Copy your hardware configuration
+2. Copy your hardware configuration
 
     NixOS generates a hardware configuration during installation.
 
@@ -82,7 +87,7 @@ After nixOS is installed:
     sudo cp /etc/nixos/hardware-configuration.nix nixos/
     ```
 
-4. Verify hostname
+3. Verify the hostname
 
     Ensure the hostname in flake.nix and nixos/configuration.nix matches your system.
 
@@ -94,7 +99,7 @@ After nixOS is installed:
 
     And the flake rebuild command will use the same hostname.
 
-5. Build the system using the flake
+4. Build the system using the flake
 
     Run:
 
@@ -117,6 +122,12 @@ To update package versions:
 
 ```sh
 nix flake update
+```
+
+Update the kernel:
+
+```sh
+sudo nixos-rebuild boot --flake .#xixon
 ```
 
 Then rebuild:
