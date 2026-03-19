@@ -16,11 +16,13 @@
     system = "x86_64-linux";
   in
   {
-    nixosConfigurations.xixon = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = {
+
+     xixon = nixpkgs.lib.nixosSystem {
       inherit system;
 
       modules = [
-        ./nixos/configuration.nix
+        ./nixos/xixon/configuration.nix
 
         home-manager.nixosModules.home-manager
 
@@ -32,5 +34,22 @@
         }
       ];
     };
+    vm = nixpkgs.lib.nixosSystem {
+      inherit system;
+
+      modules = [
+       ./nixos/vm/configuration.nix
+
+        home-manager.nixosModules.home-manager
+
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+
+          home-manager.users.alvaro = import ./home-manager/home.nix;
+        }
+      ];
+     };
+   };
   };
 }
