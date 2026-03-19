@@ -75,6 +75,13 @@
   #   enableSSHSupport = true;
   # };
 
+services.gnome.gnome-keyring.enable = true;
+
+programs.sway = {
+  enable = true;
+  wrapperFeatures.gtk = true;
+};
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
