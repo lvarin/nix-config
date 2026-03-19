@@ -40,6 +40,7 @@
   xdg.configFile."sway/foot.ini".source = ./foot/foot.ini;
 
   xdg.configFile."nvim".source = ./nvim;
+  xdg.configFile."wofi".source = ./wofi;
 
   home.file.".zshrc".source = ./zsh/zshrc;
   home.file.".Xmodmap".source = ./zsh/Xmodmap;

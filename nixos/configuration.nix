@@ -60,7 +60,24 @@
   };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.gutenprint ]; # Add other drivers as needed (e.g., pkgs.hplip)
+    browsing = true; # Enables browsing of Bonjour/network printers
+    browsedConf = ''
+      BrowseDNSSDSubTypes _cups,_print
+      BrowseLocalProtocols all
+      BrowseRemoteProtocols all
+      CreateIPPPrinterQueues All
+      BrowseProtocols all
+    '';
+  };
+
+  # Enable Avahi for network service discovery (Bonjour)
+  services.avahi = {
+    enable = true;
+    nssmdns = true; # Allows resolving .local hostnames
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
