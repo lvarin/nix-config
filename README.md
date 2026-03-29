@@ -144,3 +144,11 @@ After editing any file in this repository:
 sudo nixos-rebuild switch --flake .#xixon
 ```
 
+### Delete garbage and old generations
+
+```sh
+sudo nix-env --delete-generations --profile /nix/var/nix/profiles/system 5d
+
+sudo nixos-rebuild boot --flake .#xixon
+```
+

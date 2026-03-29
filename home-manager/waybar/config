@@ -2,7 +2,7 @@
     "height": 10,
     "spacing": 2,
 
-    "modules-left": ["custom/launcher", "sway/workspaces"],
+    "modules-left": ["custom/launcher", "sway/workspaces", "niri/workspaces"],
     "modules-center": ["sway/mode"],
     "modules-right": ["custom/recorder", "custom/layout", "idle_inhibitor", "tray", "pulseaudio", "battery", "clock", "custom/power"],
     "custom/layout": {
@@ -10,6 +10,16 @@
       "interval": 1
     },
     "sway/workspaces": {
+	    "disable-scroll": true,
+	    "format": "{name}: {icon}",
+      "format-icons": {
+        "urgent": "",
+        "focused": "",
+        "default":  "0",
+        "visible": "⦾"
+	    }
+    },
+    "niri/workspaces": {
 	    "disable-scroll": true,
 	    "format": "{name}: {icon}",
       "format-icons": {
@@ -37,7 +47,7 @@
         "spacing": 7
     },
     "clock": {
-	"format": "  {:%b %d %a  %H:%M}",
+	"format": "  {:%b %d %a   %H:%M}",
         "tooltip-format": " {:%a - %Y %b %d - w%W  %H:%M:%S %z}"
     },
     "battery": {

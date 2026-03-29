@@ -144,7 +144,27 @@ fonts.packages = with pkgs; [
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    package = pkgs.swayfx;
   };
+
+  #programs.sway = {
+  #  enable = true;
+  #  package = pkgs.swayfx;
+    
+    # Needed to build without errors.
+    #checkConfig = false;
+      
+    # SwayFX options must be configured through extraConfig.
+    #extraConfig = ''
+    #  shadows enable
+    #  corner_radius 11
+    #  blur_radius 7
+    #  blur_passes 2
+    #'';
+
+  #};
+
+  programs.niri.enable = true;
 
   # List services that you want to enable:
 

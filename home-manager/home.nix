@@ -23,7 +23,43 @@
     jq
     ripgrep
     fd
+    foot
+    fish
   ];
+
+#wayland.windowManager.sway = {
+#  enable = true;
+#  package = pkgs.swayfx;
+#  
+#  # Needed to build without errors.
+#  checkConfig = false;
+#  
+#  config = rec {
+#    modifier = "Mod4";
+#    terminal = "foot";
+#    menu = "wofi";
+#    bars = [
+#	{
+#           command = "waybar";
+#        }
+#    ];
+#    keybindings = {
+#       "${modifier}+Space" = "exec wofi";
+#       "${modifier}+Return" = "exec foot";
+#    };
+#  };  
+#  # SwayFX options must be configured through extraConfig.
+#  extraConfig = ''
+#    gaps inner 10
+#    gaps outer 5
+#    smart_borders no_gaps
+#    shadows enable
+#    corner_radius 11
+#    blur_radius 7
+#    blur_passes 2
+#  '';
+#
+#};
 
   programs.git = {
     enable = true;
@@ -35,11 +71,33 @@
 
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
-  xdg.configFile."sway/config".source = ./sway/config;
-  xdg.configFile."mako/config".source = ./mako/config;
-  xdg.configFile."sway/foot.ini".source = ./foot/foot.ini;
 
-  xdg.configFile."nvim".source = ./nvim;
+  #xdg.configFile."sway/config".source = ./sway/config; # sway
+  xdg.configFile."sway/config".source = ./sway/configfx; # sway fx
+
+  xdg.configFile."mako/config".source = ./mako/config;
+  xdg.configFile."foot/foot.ini".source = ./foot/foot.ini;
+  #
+  xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
+  #
+  #xdg.configFile."nvim/lazy-lock.json".source = nvim/lazy-lock.json
+  xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
+  xdg.configFile."nvim/.neoconf.json".source = ./nvim/.neoconf.json;
+  xdg.configFile."nvim/stylua.toml".source = ./nvim/stylua.toml;
+  xdg.configFile."nvim/LICENSE".source = ./nvim/LICENSE;
+  xdg.configFile."nvim/lazyvim.json".source = ./nvim/lazyvim.json;
+  xdg.configFile."nvim/README.md".source = ./nvim/README.md;
+  #xdg.configFile."nvim/lua".source = ./nvim/lua;
+  #xdg.configFile."nvim/lua/plugins".source = ./nvim/lua/plugins;
+  xdg.configFile."nvim/lua/plugins/example.lua".source = ./nvim/lua/plugins/example.lua;
+  xdg.configFile."nvim/lua/plugins/disable.lua".source = ./nvim/lua/plugins/disable.lua;
+  #xdg.configFile."nvim/lua/config".source = ./nvim/lua/config;
+  xdg.configFile."nvim/lua/config/lazy.lua".source = ./nvim/lua/config/lazy.lua;
+  xdg.configFile."nvim/lua/config/autocmds.lua".source = ./nvim/lua/config/autocmds.lua;
+  xdg.configFile."nvim/lua/config/options.lua".source = ./nvim/lua/config/options.lua;
+  xdg.configFile."nvim/lua/config/keymaps.lua".source = ./nvim/lua/config/keymaps.lua;
+  #
+
   xdg.configFile."wofi".source = ./wofi;
 
   home.file.".zshrc".source = ./zsh/zshrc;
