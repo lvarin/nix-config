@@ -25,41 +25,10 @@
     fd
     foot
     fish
+    gum     # ncurses menu
+    imv     # view images
+    img2pdf # images to pdf
   ];
-
-#wayland.windowManager.sway = {
-#  enable = true;
-#  package = pkgs.swayfx;
-#  
-#  # Needed to build without errors.
-#  checkConfig = false;
-#  
-#  config = rec {
-#    modifier = "Mod4";
-#    terminal = "foot";
-#    menu = "wofi";
-#    bars = [
-#	{
-#           command = "waybar";
-#        }
-#    ];
-#    keybindings = {
-#       "${modifier}+Space" = "exec wofi";
-#       "${modifier}+Return" = "exec foot";
-#    };
-#  };  
-#  # SwayFX options must be configured through extraConfig.
-#  extraConfig = ''
-#    gaps inner 10
-#    gaps outer 5
-#    smart_borders no_gaps
-#    shadows enable
-#    corner_radius 11
-#    blur_radius 7
-#    blur_passes 2
-#  '';
-#
-#};
 
   programs.git = {
     enable = true;
