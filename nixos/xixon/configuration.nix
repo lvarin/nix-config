@@ -50,8 +50,10 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.theme = "sugar-dark";
+  services.displayManager.sddm = {
+	enable = true;
+	theme = "catppuccin-mocha-mauve";
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -112,7 +114,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   	vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-	sddm-sugar-dark
+    (pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      accent = "mauve";
+    })
   #  wget
   ];
   programs.nix-ld = {

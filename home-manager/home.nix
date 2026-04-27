@@ -24,11 +24,17 @@
     ripgrep
     fd
     foot
-    fish
     gum     # ncurses menu
     imv     # view images
     img2pdf # images to pdf
   ];
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting
+    '';
+  };
 
   programs.git = {
     enable = true;
